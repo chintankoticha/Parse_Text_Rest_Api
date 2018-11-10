@@ -32,6 +32,10 @@ public class HomeController  {
 
     List<Person> personList = new ArrayList<>();
 
+    String parseOutput1 = "";
+    String parseOutput2 = "";
+    String parseOutput3 = "";
+
     @RequestMapping(value = "/")
     public String home() {
         return "Home";
@@ -101,6 +105,9 @@ public class HomeController  {
                 model.addAttribute("filePath1",opath1);
                 model.addAttribute("filePath2",opath2);
                 model.addAttribute("filePath3",opath3);
+                model.addAttribute("parseOutput1",parseOutput1);
+                model.addAttribute("parseOutput2",parseOutput2);
+                model.addAttribute("parseOutput3",parseOutput3);
                 return "result";
             }else{
                 if(result.get(1).split(" \\| ").length>1) {
@@ -134,6 +141,9 @@ public class HomeController  {
                     model.addAttribute("filePath1",opath1);
                     model.addAttribute("filePath2",opath2);
                     model.addAttribute("filePath3",opath3);
+                    model.addAttribute("parseOutput1",parseOutput1);
+                    model.addAttribute("parseOutput2",parseOutput2);
+                    model.addAttribute("parseOutput3",parseOutput3);
                 }else{
                     if(!request.getParameter("fileType").equalsIgnoreCase("2")){
                         model.addAttribute("fileError","error");
@@ -165,6 +175,9 @@ public class HomeController  {
                     model.addAttribute("filePath1",opath1);
                     model.addAttribute("filePath2",opath2);
                     model.addAttribute("filePath3",opath3);
+                    model.addAttribute("parseOutput1",parseOutput1);
+                    model.addAttribute("parseOutput2",parseOutput2);
+                    model.addAttribute("parseOutput3",parseOutput3);
                 }
             }
         } catch (IOException e) {
@@ -191,14 +204,21 @@ public class HomeController  {
     public String writeFile1(List<Person> personList1){
         //System.out.println(System.getProperty("user.dir"));
         String path = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\parseFile1.txt";
-        path = writeFile(personList1,path);
+        parseOutput1 = writeFile(personList1,path);
         return path;
     }
 
     public String writeFile2(List<Person> personList1){
         //System.out.println(System.getProperty("user.dir"));
         String path = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\parseFile2.txt";
-        path = writeFile(personList1,path);
+        parseOutput2 = writeFile(personList1,path);
+        return path;
+    }
+
+    public String writeFile3(List<Person> personList1){
+        //System.out.println(System.getProperty("user.dir"));
+        String path = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\parseFile3.txt";
+        parseOutput3 = writeFile(personList1,path);
         return path;
     }
 
@@ -208,6 +228,7 @@ public class HomeController  {
         }catch(Exception e){
             System.out.println("Error while deleting the file:"+e.getMessage());
         }
+        StringBuilder modelAttributeString = new StringBuilder();
         try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(path))){
             for(Person p:personList1) {
                 StringBuilder sb = new StringBuilder();
@@ -222,19 +243,13 @@ public class HomeController  {
                 sb.append(formatter.format(p.getDateOfBirth())+ " ");
                 sb.append(p.getFavoriteColor());
                 sb.append("\n");
+                modelAttributeString.append(sb.toString());
                 writer.write(sb.toString());
             }
-            return path;
+            return modelAttributeString.toString();
         }catch(Exception e){
             System.out.println("Write to File Error: "+e.getMessage());
         }
-        return path;
-    }
-
-    public String writeFile3(List<Person> personList1){
-        //System.out.println(System.getProperty("user.dir"));
-        String path = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\parseFile3.txt";
-        path = writeFile(personList1,path);
-        return path;
+        return modelAttributeString.toString();
     }
 }

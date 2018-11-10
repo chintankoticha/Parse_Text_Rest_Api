@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>File Parser Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" th:inline="javascript">
+        function checkExt() {
+            if(document.mainForm.file.value.lastIndexOf(".txt")==-1) {
+                alert("Please upload only .txt extention file");
+                return false;
+            }else {
+                document.getElementById("submitBtn").disabled = false;
+            }
+        }
+
+        $(document).ready(function(){
+            $("#file").val('');
+
+            var modelAttributeValue = [[${fileError}]];
+            if(modelAttributeValue=='error'){
+                alert('Selected File Type Does Not Correspond Given File!');
+            }
+
+            $("#submitBtn").prop("disabled",true);
+
+            $('#submitBtn').click(function(){
+                if($('#inputGroupSelect01').val()=='default'){
+                    alert('Select File Type!');
+                    return false;
+                }
+            });
+        });
+    </script>
+    <style>
+        /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+        .row.content {height: 1500px}
+
+        /* Set gray background color and 100% height */
+        .sidenav {
+            background-color: #f1f1f1;
+            height: 100%;
+        }
+
+        /* On small screens, set height to 'auto' for sidenav and grid */
+        @media screen and (max-width: 767px) {
+            .sidenav {
+                height: auto;
+                padding: 15px;
+            }
+            .row.content {height: auto;}
+        }
+
+        .backgroundImage {
+            background-image: url(https://cdn-images-1.medium.com/max/1600/1*7uRwz8TZxIi3PuMNUB4nCw.jpeg);
+            width: 100%;
+            height: 500px;
+            position: relative;
+            background-repeat: no-repeat;
+            background-position: top;
+            max-height: 100%;
+            max-width: 100%;
+            background-size: 100% 100%;
+            /*background-color: rgba(255,255,255,0.3);*/
+        }
+
+        .backgroundImage:before {
+            background-color: rgba(0, 0, 0, 0.37);
+            content: '';
+            display: block;
+            height: 100%;
+            position: absolute;
+            width: 100%;
+        }
+
+        .custom-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -35px;
+            margin-left: -285px;
+        }
+        .h1-text {
+            color: #fff;
+            background-color: #000;
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="backgroundImage">
+                <div class="text-center custom-center absoluteCenter">
+                    <h1 class="h1-text">DEF METHOD FILE PARSE CODE TEST</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-sm-12">
+            <form action="/parse" method="post" enctype="multipart/form-data" name="mainForm" autocomplete="false">
+                <select class="custom-select" id="inputGroupSelect01" name="fileType">
+                    <option selected value="default">Choose...</option>
+                    <option value="1">SPACE</option>
+                    <option value="2">COMMA</option>
+                    <option value="3">PIPE</option>
+                </select>
+                <br/><br/>
+                <div class="custom-file">
+                    <input type="file" name="file" class="custom-file-input" id="file" onchange="checkExt();">
+                </div>
+                <br/>
+                <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
+                <br/>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
