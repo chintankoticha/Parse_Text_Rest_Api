@@ -1,0 +1,52 @@
+group = 'com.codetest'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    ext {
+        springBootVersion = '1.5.6.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'war'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    providedRuntime
+}
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-actuator')
+    compile('org.springframework.boot:spring-boot-actuator-docs')
+    compile('org.springframework.boot:spring-boot-starter-mail')
+    compile('org.springframework.session:spring-session')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+    compile('com.h2database:h2:+')
+    compile('com.googlecode.json-simple:json-simple:+')
+    compile('org.apache.commons:commons-lang3:+')
+    compile('com.google.guava:guava:+')
+    compile('org.apache.httpcomponents:httpclient:+')
+    compile('com.google.code.gson:gson:+')
+    runtime('org.springframework.boot:spring-boot-devtools')
+    providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
+    compile group: 'net.sourceforge.nekohtml', name: 'nekohtml', version: '1.9.13'
+}
+
+war{
+    archiveName = 'codetest.war'
+}
