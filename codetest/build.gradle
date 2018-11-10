@@ -45,6 +45,7 @@ dependencies {
     runtime('org.springframework.boot:spring-boot-devtools')
     providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
     compile group: 'net.sourceforge.nekohtml', name: 'nekohtml', version: '1.9.13'
+    compile group: 'com.github.jsimone', name: 'webapp-runner', version: '7.0.22'
 }
 
 war{

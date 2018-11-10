@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Parse Results</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h3>OUTPUTS FOR PARSED INPUT TEXT FILES</h3>
+        <div class="row">
+            <div class="col-md-4">
+                <a th:href="${filePath1}" th:target="_blank" class="btn btn-primary">Sorted by gender (females before males) then by last name ascending</a>
+            </div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-md-4">
+                <a th:href="${filePath2}" th:target="_blank" class="btn btn-primary">Sorted by birth date, ascending then by last name ascending</a>
+            </div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-md-4">
+                <a th:href="${filePath3}" th:target="_blank" class="btn btn-primary">Sorted by last name, descending</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

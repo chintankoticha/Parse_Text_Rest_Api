@@ -1,12 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>File Parser Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" th:inline="javascript">
+        function checkExt() {
+            if(document.mainForm.file.value.lastIndexOf(".txt")==-1) {
+                alert("Please upload only .txt extention file");
+                return false;
+            }else {
+                document.getElementById("submitBtn").disabled = false;
+            }
+        }
+
+        $(document).ready(function(){
+            $("#file").val('');
+
+            var modelAttributeValue = [[${fileError}]];
+            if(modelAttributeValue=='error'){
+                alert('Selected File Type Does Not Correspond Given File!');
+            }
+
+            $("#submitBtn").prop("disabled",true);
+
+            $('#submitBtn').click(function(){
+                if($('#inputGroupSelect01').val()=='default'){
+                    alert('Select File Type!');
+                    return false;
+                }
+            });
+        });
+    </script>
     <style>
         /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
         .row.content {height: 1500px}
@@ -15,13 +44,6 @@
         .sidenav {
             background-color: #f1f1f1;
             height: 100%;
-        }
-
-        /* Set black background color, white text and some padding */
-        footer {
-            background-color: #555;
-            color: white;
-            padding: 15px;
         }
 
         /* On small screens, set height to 'auto' for sidenav and grid */
@@ -37,31 +59,70 @@
             background-image: url(https://cdn-images-1.medium.com/max/1600/1*7uRwz8TZxIi3PuMNUB4nCw.jpeg);
             width: 100%;
             height: 500px;
-            position: relative
+            position: relative;
+            background-repeat: no-repeat;
+            background-position: top;
+            max-height: 100%;
+            max-width: 100%;
+            background-size: 100% 100%;
+            /*background-color: rgba(255,255,255,0.3);*/
+        }
+
+        .backgroundImage:before {
+            background-color: rgba(0, 0, 0, 0.37);
+            content: '';
+            display: block;
+            height: 100%;
+            position: absolute;
+            width: 100%;
+        }
+
+        .custom-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -35px;
+            margin-left: -285px;
+        }
+        .h1-text {
+            color: #fff;
+            background-color: #000;
+            padding: 10px 15px;
+            border-radius: 8px;
         }
     </style>
 </head>
 <body>
 <div class="container-fluid">
-    <div class="col-sm-12">
-        <div class="backgroundImage">
-            <div class="text-center absoluteCenter">
-                <h1>Def Method File Parse Code Test</h1>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="backgroundImage">
+                <div class="text-center custom-center absoluteCenter">
+                    <h1 class="h1-text">DEF METHOD FILE PARSE CODE TEST</h1>
+                </div>
             </div>
         </div>
-        <h4><small>RECENT POSTS</small></h4>
-        <hr>
-        <h2>I Love Food</h2>
-        <h5><span class="glyphicon glyphicon-time"></span> Post by Jane Dane, Sep 27, 2015.</h5>
-        <h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>
-        <p>Food is my passion. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        <br><br>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-sm-12">
+            <form action="/parse" method="post" enctype="multipart/form-data" name="mainForm" autocomplete="false">
+                <select class="custom-select" id="inputGroupSelect01" name="fileType">
+                    <option selected value="default">Choose...</option>
+                    <option value="1">SPACE</option>
+                    <option value="2">COMMA</option>
+                    <option value="3">PIPE</option>
+                </select>
+                <br/><br/>
+                <div class="custom-file">
+                    <input type="file" name="file" class="custom-file-input" id="file" onchange="checkExt();">
+                </div>
+                <br/>
+                <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
+                <br/>
+            </form>
+        </div>
     </div>
 </div>
-
-<footer class="container-fluid">
-    <p>Footer Text</p>
-</footer>
-
 </body>
 </html>
