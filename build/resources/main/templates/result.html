@@ -1,47 +1,59 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head>
     <meta charset="UTF-8">
     <title>Parse Results</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" th:inline="javascript">
+        $(document).ready(function(){
+            var value1 = [[${parseOutput1}]];
+            var value2 = [[${parseOutput2}]];
+            var value3 = [[${parseOutput3}]];
+            $("#comment1").val(value1);
+            $("#comment2").val(value2);
+            $("#comment3").val(value3);
+        });
+    </script>
 </head>
 <body>
     <div class="container-fluid">
         <h3>OUTPUTS FOR PARSED INPUT TEXT FILES</h3>
-        <div class="row">
-            <div class="col-md-4">
-                <a th:href="${filePath1}" th:target="_blank" class="btn btn-primary">Sorted by gender (females before males) then by last name ascending</a>
-            </div>
-        </div>
-        <br/>
-        <div class="row">
-            <div class="col-md-4">
-                <a th:href="${filePath2}" th:target="_blank" class="btn btn-primary">Sorted by birth date, ascending then by last name ascending</a>
-            </div>
-        </div>
-        <br/>
-        <div class="row">
-            <div class="col-md-4">
-                <a th:href="${filePath3}" th:target="_blank" class="btn btn-primary">Sorted by last name, descending</a>
-            </div>
-        </div>
+        <!--<div class="row">-->
+            <!--<div class="col-md-4">-->
+                <!--<a th:href="${filePath1}" th:target="_blank" class="btn btn-primary">Sorted by gender (females before males) then by last name ascending</a>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<br/>-->
+        <!--<div class="row">-->
+            <!--<div class="col-md-4">-->
+                <!--<a th:href="${filePath2}" th:target="_blank" class="btn btn-primary">Sorted by birth date, ascending then by last name ascending</a>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<br/>-->
+        <!--<div class="row">-->
+            <!--<div class="col-md-4">-->
+                <!--<a th:href="${filePath3}" th:target="_blank" class="btn btn-primary">Sorted by last name, descending</a>-->
+            <!--</div>-->
+        <!--</div>-->
         <div class="row">
             <div class="col-sm-4">
                 <div class="form-group">
-                    <label for="comment1">Sorted by gender (females before males); last name ascending</label>
-                    <textarea class="form-control" rows="10" id="comment1" th:inline="text" disabled>[[${parseOutput1}]]</textarea>
+                    <label for="comment1">Sorted by gender then last name ascending</label>
+                    <textarea class="form-control" rows="10" id="comment1" disabled></textarea>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="form-group">
-                    <label for="comment2">Sorted by birth date, ascending then by last name ascending</label>
-                    <textarea class="form-control" rows="10" id="comment2" th:inline="text" disabled>[[${parseOutput2}]]</textarea>
+                    <label for="comment2">Sorted by birth date ascending, last name ascending</label>
+                    <textarea class="form-control" rows="10" id="comment2" disabled></textarea>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="form-group">
                     <label for="comment3">Sorted by last name, descending</label>
-                    <textarea class="form-control" rows="10" id="comment3" th:inline="text" disabled>[[${parseOutput3}]]</textarea>
+                    <textarea class="form-control" rows="10" id="comment3" disabled></textarea>
                 </div>
             </div>
         </div>
