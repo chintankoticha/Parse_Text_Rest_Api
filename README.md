@@ -16,6 +16,7 @@ To run the application simply follow the following steps:
 5. Git clone the project using command https://github.com/chintankoticha/Parse_Text_Rest_Api.git on Desktop
 6. Open folder and copy codetest.war
 7. Go to C:\Tomcat8\webapps and paste codetest.war there
+8. Install Java JDK and set environment variables as shown here https://www.oreilly.com/library/view/pentaho-for-big/9781783282159/ch02s04.html
 8. Run Tomcat server by going to C:\Tomcat8\bin and running startup.bat
 9. Open Google Chrome and download extension "Enable local file links" on Chrome Browser for enabling view to local files and systems.
 10. Run the following URL
