@@ -203,21 +203,21 @@ public class HomeController  {
 
     public String writeFile1(List<Person> personList1){
         //System.out.println(System.getProperty("user.dir"));
-        String path = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\parseFile1.txt";
+        String path = System.getProperty("java.io.tmpdir")+"\\parseFile1.txt";
         parseOutput1 = writeFile(personList1,path);
         return path;
     }
 
     public String writeFile2(List<Person> personList1){
         //System.out.println(System.getProperty("user.dir"));
-        String path = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\parseFile2.txt";
+        String path = System.getProperty("java.io.tmpdir")+"\\parseFile2.txt";
         parseOutput2 = writeFile(personList1,path);
         return path;
     }
 
     public String writeFile3(List<Person> personList1){
         //System.out.println(System.getProperty("user.dir"));
-        String path = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\parseFile3.txt";
+        String path = System.getProperty("java.io.tmpdir")+"\\parseFile3.txt";
         parseOutput3 = writeFile(personList1,path);
         return path;
     }
