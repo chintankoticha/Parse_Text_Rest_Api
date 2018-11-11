@@ -234,7 +234,7 @@ public class HomeController  {
                 StringBuilder sb = new StringBuilder();
                 sb.append(p.getLastName() + " ");
                 sb.append(p.getFirstName() + " ");
-                if(p.getGender().equalsIgnoreCase("F")) {
+                if(p.getGender().equalsIgnoreCase("Female") || p.getGender().equalsIgnoreCase("F")) {
                     sb.append("FEMALE ");
                 }else{
                     sb.append("MALE ");
