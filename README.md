@@ -3,6 +3,7 @@
 Simple Application to parse Space, Comma and Pipe based Text files on a Spring Boot REST API based server.
 
 To run the application simply follow the following steps:
+
 //HEROKU SERVER DETAILS
 1. Run https://parsefile.herokuapp.com/ to get the app running.
 
@@ -17,7 +18,15 @@ To run the application simply follow the following steps:
 6. Open folder and copy codetest.war
 7. Go to C:\Tomcat8\webapps and paste codetest.war there
 8. Install Java JDK and set environment variables as shown here https://www.oreilly.com/library/view/pentaho-for-big/9781783282159/ch02s04.html
-8. Run Tomcat server by going to C:\Tomcat8\bin and running startup.bat
-9. Open Google Chrome and download extension "Enable local file links" on Chrome Browser for enabling view to local files and systems.
-10. Run the following URL
+9. Run Tomcat server by going to C:\Tomcat8\bin and running startup.bat
+10. Open Google Chrome and download extension "Enable local file links" on Chrome Browser for enabling view to local files and systems.
+11. Run the following URL
     localhost:8888/
+    
+//IntelliJ Instructions
+1. Download Intellij
+2. Git clone https://github.com/chintankoticha/Parse_Text_Rest_Api.git
+3. Run IntelliJ and import cloned project
+4. Build War and Run Application
+5. Run the following URL
+    localhost:8888/ 
