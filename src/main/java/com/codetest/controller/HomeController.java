@@ -229,7 +229,7 @@ public class HomeController  {
             System.out.println("Error while deleting the file:"+e.getMessage());
         }
         StringBuilder modelAttributeString = new StringBuilder();
-        try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(path))){
+        try /*(BufferedWriter writer = Files.newBufferedWriter(Paths.get(path)))*/{
             for(Person p:personList1) {
                 StringBuilder sb = new StringBuilder();
                 sb.append(p.getLastName() + " ");
