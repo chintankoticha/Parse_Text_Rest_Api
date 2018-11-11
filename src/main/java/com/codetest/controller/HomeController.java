@@ -244,7 +244,7 @@ public class HomeController  {
                 sb.append(p.getFavoriteColor());
                 sb.append("\n");
                 modelAttributeString.append(sb.toString());
-                writer.write(sb.toString());
+                //writer.write(sb.toString());
             }
             return modelAttributeString.toString();
         }catch(Exception e){
